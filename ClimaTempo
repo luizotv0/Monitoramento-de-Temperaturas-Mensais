@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+#define DIAS 30 // quantidade de dias do mes
+
+int main() {
+    float temperaturas[DIAS]; // vetor que armazena as temperaturas
+    int i, maior = 0;
+
+    printf("========================================\n");
+    printf("        Bem-vindo ao ClimaTempo\n");
+    printf("    Controle de Temperaturas Mensais\n");
+    printf("========================================\n\n");
+
+    // Entrada de dados
+    for (i = 0; i < DIAS; i++) {
+        printf("Digite a temperatura maxima do dia %d: ", i + 1);
+        scanf("%f", &temperaturas[i]);
+
+        // Estrutura de decisao: verifica maior temperatura
+        if (temperaturas[i] > temperaturas[maior]) {
+            maior = i;
+        }
+    }
+
+    // Exibe as temperaturas registradas
+    printf("\n=== Temperaturas Registradas ===\n");
+    for (i = 0; i < DIAS; i++) {
+        printf("Dia %2d: %.1f°C\n", i + 1, temperaturas[i]);
+    }
+
+    // Grafico de linhas
+    printf("\n=== Grafico de Linha ===\n");
+    printf("(Cada '*' representa 1 grau Celsius)\n\n");
+
+    for (i = 0; i < DIAS; i++) {
+        int estrelas = (int)temperaturas[i]; // converte temperatura em quantidade de '*'
+        printf("Dia %2d (%.1f°C): ", i + 1, temperaturas[i]);
+
+        for (int j = 0; j < estrelas; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    // Destaque para maior temperatura
+    printf("\nA maior temperatura do mes foi %.1f°C no dia %d.\n",
+           temperaturas[maior], maior + 1);
+
+    printf("\n=== Fim do programa. Obrigado por usar o TempTrack! ===\n");
+
+    return 0;
+}
